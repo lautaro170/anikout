@@ -1,0 +1,53 @@
+.profile-pic-hover
+{
+	text-align: center;
+	display:none;
+	padding-top: 40%;
+	top: -90px;
+	position: relative;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	background-color:rgba(119, 119, 119, 0.68);
+	color: white; 
+	vertical-align: middle;
+	text-decoration: underline;
+	cursor: pointer;
+
+}
+.profile-pic-hover a,
+.profile-pic-hover a:hover
+{
+	color: white;
+}
+.widget-user .widget-user-image > img
+{
+	width: 90px!important;
+	height: 90px!important;
+}
+a[href="https://froala.com/wysiwyg-editor"] 
+{ 
+	display: none!important; 
+}
+#table-pedido tr.row-armado{
+	background-color: #76e676;
+	color: #264c26;
+}
+.artesana-color-1{
+	background-color: #fc6a31!important;
+}
+.artesana-color-2{
+	background-color: #c1a1d4!important;
+}
+.artesana-color-3{
+	background-color: #9acd80!important;
+}
+.artesana-color-4{
+	background-color: #f0b308!important;
+}
+.nombre-cliente{
+	padding-left: 5rem!important;
+	font-weight: 600;
+	color: darkslategrey;
+	font-size: 19px;
+}
