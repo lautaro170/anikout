@@ -21,6 +21,7 @@ services:
       retries: 10
 
   web:
+    build: .
     image: php:8.3-apache
     container_name: anikout-web
     depends_on:
@@ -34,6 +35,20 @@ services:
       APACHE_DOCUMENT_ROOT: /var/www/html
     restart: unless-stopped
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: anikout-phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: anikout_sistema_pedidos
+      PMA_PASSWORD: 3SPgEv**9bYz
+      UPLOAD_LIMIT: 20M
+      PHP_UPLOAD_MAX_FILESIZE: 20M
+      PHP_POST_MAX_SIZE: 20M
+    ports:
+      - "8081:80"
+
 volumes:
   db_data:
-
