@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: anikout-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: anikout_sistema_pedidos_nuevo
+      MYSQL_USER: anikout_sistema_pedidos
+      MYSQL_PASSWORD: 3SPgEv**9bYz
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    image: php:8.3-apache
+    container_name: anikout-web
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pedidos:/var/www/html
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
