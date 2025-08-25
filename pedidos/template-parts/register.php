@@ -46,6 +46,6 @@
                 <button type="submit" id="btnregister" class="btn realizar-pedido-button" disabled>CONFIRMAR PEDIDO</button>
             </div>
             <!-- /.col -->
-    </div>
     </form>
+    </div>
 </div>
