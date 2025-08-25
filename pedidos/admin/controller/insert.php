@@ -189,59 +189,12 @@ function registrar()
 	$localidad = getZonaEnvioById($zona_envio)["Nombre"];
 	try{
 	    mailNuevoUsuarioRegistradoAdmin($nombrecompleto, $telefono, $celular, $address, $email, $localidad, $timetodeliver  );
-        add_to_mailchimp_list();
 	}
 	catch(Exception $e){
-		return;
+
 	}
 	header("location: index.php?autoConfirmar=true");
 }
-
-
-function add_to_mailchimp_list(){
-    
-    require(dirname(__FILE__) .'/php-libraries/vendor/autoload.php');
-
-    $mailchimp = new \MailchimpMarketing\ApiClient();
-
-    $mailchimp->setConfig([
-    	'apiKey' => 'e28df0d13202fd84822daf70ff740c87-us17',
-    	'server' => 'us17'
-    ]);
-    
-    $list_id = "a5adf59464";
-    
-    try{
-        $response = $mailchimp->lists->addListMember($list_id, [
-        "email_address" => $_POST['email'],
-        "status" => "subscribed",
-        "merge_fields" => [
-            "FNAME" => $_POST['nombre'],
-            "LNAME" => $_POST['apellido'],
-            "PHONE" => $_POST['telefono'],
-            ],
-        ]);
-    }
-    
-    catch (GuzzleHttp\Exception\ClientException $e) {
-        $errors[] = $e->getMessage();
-
-        $response = $mailchimp->lists->updateListMember($list_id, $_POST['email'], [
-            "email_address" => $_POST['email'],
-            "status" => "subscribed",
-            "merge_fields" => [
-            "FNAME" => $_POST['nombre'],
-            "LNAME" => $_POST['apellido'],
-            "PHONE" => $_POST['telefono'],
-            ],
-            
-        ]);
-
-    }
-    
-    return;
-    }
-
 
 function crear_cocinero()
 {
