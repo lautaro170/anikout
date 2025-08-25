@@ -22,7 +22,6 @@ services:
 
   web:
     build: .
-    image: php:8.3-apache
     container_name: anikout-web
     depends_on:
       db:
