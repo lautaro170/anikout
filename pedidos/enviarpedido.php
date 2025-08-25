@@ -15,7 +15,7 @@ if(isset($_POST["pedidoArray"]))
 {
 	$pedido = $_POST["pedidoArray"];
 	$nota = $_POST["nota"];
-    $zonaEnvio = $_POST["zonaEnvio"];
+    $zonaEnvio = $_POST["zonaEnvio"] ?? "";
     
 	$emailUser = $_SESSION['usuario_mail_a'];
 	$nameUser = $_SESSION['nombrecompleto_a'];
