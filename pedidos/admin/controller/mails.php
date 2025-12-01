@@ -42,6 +42,10 @@ function sendMail($subject, $body, $emailDestino, $nameUser ){
 
 }
 
+#mock send mail
+function sendMail($subject, $body, $emailDestino, $nameUser ){
+    return true;
+}
 function mailPedidosUsuario($emailDestino, $nameUser){
     
     
