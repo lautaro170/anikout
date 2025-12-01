@@ -42,33 +42,26 @@ function sendMail($subject, $body, $emailDestino, $nameUser ){
 
 }
 
-#mock send mail
-function sendMail($subject, $body, $emailDestino, $nameUser ){
-    return true;
-}
 function mailPedidosUsuario($emailDestino, $nameUser){
     
     
     $today = new DateTime();
-    $today->sub(new DateInterval('P1D'));
-
     $today_format =  $today->format('Y-m-d H:i:s');
     $fecha_entrega_str = getFechaEntrega($today_format);
     $fecha_entrega_dt = new DateTime($fecha_entrega_str, new DateTimeZone('America/Argentina/Buenos_Aires'));
-    
-    $fecha_entrega = 
-    IntlDateFormatter::formatObject( 
+    $fecha_entrega_dia_anterior_dt = clone $fecha_entrega_dt;
+    $fecha_entrega_dia_anterior_dt->sub(new DateInterval('P1D'));
+
+    $fecha_entrega = IntlDateFormatter::formatObject(
       $fecha_entrega_dt, 
       "eeee d 'de' MMMM", 
       'es' 
     );
-    
-    $fecha_anterior_entrega_dt = $fecha_entrega_dt->sub(new DateInterval('P1D'));
-    
+
     $fecha_anterior_entrega = 
     IntlDateFormatter::formatObject( 
-      $fecha_entrega_dt, 
-      "eeee d 'de' MMMM", 
+      $fecha_entrega_dia_anterior_dt,
+      "eeee d 'de' MMMM",
       'es' 
     );
     
@@ -81,7 +74,7 @@ function mailPedidosUsuario($emailDestino, $nameUser){
 		Muchas gracias!!! 💚 <br/>
 		Salud y saludos, Ani.
 		";
-	
+
 	return sendMail($subject, $body, $emailDestino, $nameUser);
 }
 
@@ -119,8 +112,5 @@ function mailNuevoUsuarioRegistradoAdmin($nombrecompleto, $telefono, $celular, $
 	return sendMail($subject, $body, $emailDestino, $nameUser);
 	
 }
-
-
-
 
 ?>
